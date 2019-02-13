@@ -36,15 +36,15 @@ public class KafkaSender {
             datas.setProducer("ijinus");
             datas.setChannel("");
             datas.setSn("123");
-            datas.setTime(String.valueOf(System.currentTimeMillis() / 1000));
+            datas.setTime(String.valueOf(System.currentTimeMillis() ));
             datas.setValue((Math.random() * 10));
             List<Datas> list = new ArrayList<>();
             list.add(datas);
             root.setDatas(list);
             root.setVer("1.0");
-//            log.info("+++++++++++++++++++++  message = {}", gson.toJson(root));
-//            log.info("+++++++++++++++++++++  message = {}", gson.toJson(datas));
-            kafkaTemplate.send("test", gson.toJson(root));
+            log.info("+++++++++++++++++++++  message = {}", gson.toJson(root));
+            log.info("+++++++++++++++++++++  message = {}", gson.toJson(datas));
+            kafkaTemplate.send("rc-metric-data", gson.toJson(root));
         }
 
 
