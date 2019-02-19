@@ -36,7 +36,10 @@ public class KafkaSender {
             datas.setProducer("ijinus");
             datas.setChannel("");
             datas.setSn("123");
-            datas.setTime(String.valueOf(System.currentTimeMillis() ));
+            //datas.setTime(String.valueOf(System.currentTimeMillis()));
+            datas.setTime(String.valueOf(System.currentTimeMillis()+(i+1)*1000));
+            //System.out.println("System.currentTimeMillis():----------->"+(System.currentTimeMillis()));
+            System.out.println("System.currentTimeMillis()+i*1000:----------->"+(System.currentTimeMillis()+(i+1)*1000));
             datas.setValue((Math.random() * 10));
             List<Datas> list = new ArrayList<>();
             list.add(datas);
@@ -45,6 +48,7 @@ public class KafkaSender {
             log.info("+++++++++++++++++++++  message = {}", gson.toJson(root));
             log.info("+++++++++++++++++++++  message = {}", gson.toJson(datas));
             kafkaTemplate.send("rc-metric-data", gson.toJson(root));
+
         }
 
 

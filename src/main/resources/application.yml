@@ -27,7 +27,7 @@ spring:
       # 服务器地址
       bootstrap-servers: 192.168.155.163:9092
 value:
-  max: 1
+  max: 1000
 opentsdb:
   url: 192.168.155.10
   port: 4242
