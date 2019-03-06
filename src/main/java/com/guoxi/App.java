@@ -6,7 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.util.concurrent.ListenableFuture;
 
 @SpringBootApplication
 @ComponentScan("com.guoxi")
@@ -20,6 +22,8 @@ public class App {
 //        for (int i = 0; i < 10; i++) {
 //            asyncTaskService.executeAsyncTask(i);
 //        }
-            sender.send();
+        //sender.send();
+        ListenableFuture<SendResult<String, String>> send57=sender.send57();
+        System.out.println(send57);
     }
 }

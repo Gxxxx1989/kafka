@@ -5,7 +5,7 @@ server:
 spring:
   kafka:
     # kafka服务器地址(可以多个)
-    bootstrap-servers: 192.168.155.163:9092
+    bootstrap-servers: 192.168.155.57:9092
     consumer:
       # 指定一个默认的组名
       group-id: test-consumer-group
@@ -25,9 +25,9 @@ spring:
       # 缓存容量
       buffer-memory: 524288
       # 服务器地址
-      bootstrap-servers: 192.168.155.163:9092
+      bootstrap-servers: 192.168.155.57:9092
 value:
-  max: 1000
+  max: 1
 opentsdb:
   url: 192.168.155.10
   port: 4242

@@ -8,7 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +38,11 @@ public class KafkaSender {
             datas.setProducer("ijinus");
             datas.setChannel("");
             datas.setSn("123");
-            //datas.setTime(String.valueOf(System.currentTimeMillis()));
-            datas.setTime(String.valueOf(System.currentTimeMillis()+(i+1)*1000));
+            datas.setTime(String.valueOf(System.currentTimeMillis()));
+            //datas.setTime(String.valueOf(System.currentTimeMillis()+(i+1)*1000));
+            //datas.setTime("983427253000");
             //System.out.println("System.currentTimeMillis():----------->"+(System.currentTimeMillis()));
-            System.out.println("System.currentTimeMillis()+i*1000:----------->"+(System.currentTimeMillis()+(i+1)*1000));
+            //System.out.println("System.currentTimeMillis()+i*1000:----------->"+(System.currentTimeMillis()+(i+1)*1000));
             datas.setValue((Math.random() * 10));
             List<Datas> list = new ArrayList<>();
             list.add(datas);
@@ -50,7 +53,25 @@ public class KafkaSender {
             kafkaTemplate.send("rc-metric-data", gson.toJson(root));
 
         }
+    }
 
+    public ListenableFuture<SendResult<String, String>> send57(){
+        Root root = new Root();
+        Datas datas = new Datas();
+        datas.setMetric("h2s");
+        datas.setProducer("mixiaoquan");
+        datas.setChannel("AAASSS");
+        datas.setSn("mxq20190111");
+        datas.setTime(String.valueOf(System.currentTimeMillis()));
+        datas.setValue(8d);
+        List<Datas> list = new ArrayList<>();
+        list.add(datas);
+        root.setDatas(list);
+        root.setVer("1.0");
+
+        ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("rc-metric-data", gson.toJson(root));
+
+        return send;
 
     }
 }
